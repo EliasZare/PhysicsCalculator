@@ -10,7 +10,6 @@ Console.WriteLine("Change in Velocity: DV");
 IOperations _operations = new Operations();
 
 while (true)
-while (true)
 {
     Console.WriteLine();
     Console.WriteLine("--------------------");
@@ -54,11 +53,25 @@ while (true)
             Console.WriteLine("--------------------");
             Console.WriteLine("Enter ur acceleration");
             var acceleration = int.Parse(Console.ReadLine());
-            Console.Write("Enter ur FirstX : ");
-            var FXDV = int.Parse(Console.ReadLine());
-            Console.Write("Enter ur LastX : ");
-            var LXDV = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Ur Velocity: {2 * acceleration * (Math.Abs(LXDV) - Math.Abs(FXDV))}");
+            Console.Write("Enter ur FirstX | if it's passive set equal to 0 : ");
+            var firstX = double.Parse(Console.ReadLine());
+            Console.Write("Enter ur LastX | if it's passive set equal to 0 : ");
+            var lastX = double.Parse(Console.ReadLine());
+            Console.Write("Enter ur FirstV | if it's passive set equal to 0 : ");
+            var firstV = double.Parse(Console.ReadLine());
+            Console.Write("Enter ur LastV | if it's passive set equal to 0 : ");
+            var lastV = double.Parse(Console.ReadLine());
+
+            var list = new Dictionary<string, double>();
+            list.Add("acceleration", acceleration);
+            list.Add("firstX", firstX);
+            list.Add("lastX", lastX);
+            list.Add("lastV", lastV);
+            list.Add("firstV", firstV);
+            var name = list.SingleOrDefault(x => x.Value == 0).Key.ToString();
+            Console.WriteLine(
+                $"Ur {name} :{_operations.FreeVelocity(firstV, lastV, acceleration, firstX, lastX).ToString()} ");
+
             break;
         default:
             Console.WriteLine("This operation is not defined!");
