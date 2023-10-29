@@ -70,14 +70,14 @@
             if (firstV == 0)
             {
                 lastV = Math.Pow(lastV * -1, 2);
-                result = lastV * 2 * acceleration * (firstX - lastX);
+                result = lastV * 2 * acceleration * (lastX - firstX);
                 result = Math.Sqrt(result);
             }
 
             if (lastV == 0)
             {
                 firstV = Math.Pow(firstV, 2);
-                result = firstV * 2 * acceleration * (firstX - lastX);
+                result = firstV * 2 * acceleration * (lastX - firstX);
                 result = Math.Sqrt(result);
             }
 
@@ -102,6 +102,7 @@
                 firstX = firstX * -1;
                 result = lastV + firstV / 2 * acceleration + firstX;
             }
+
             return result;
         }
     }
